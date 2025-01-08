@@ -82,16 +82,30 @@
         }
 
         .form-container input[type="text"],
-        .form-container input[type="email"],
         .form-container input[type="tel"],
         .form-container textarea {
             width: 93%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 2px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+       .form-container .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            display: none; /* Oculto por defecto */
+        }
+       .form-container input.error,
+       .form-container textarea.error {
+            border: 1px solid red;
+        }
 
+       .form-container .error-summary {
+            color: red;
+            margin-bottom: 10px;
+            display: none; /* Oculto por defecto */
+        }
         /* --- Estilos de Beneficios --- */
         .benefits {
             background-color: #fff;
@@ -222,7 +236,6 @@
                 padding: 20px;
             }
             .form-container input[type="text"],
-            .form-container input[type="email"],
             .form-container input[type="tel"],
             .form-container textarea {
                 width: 90%;
@@ -290,18 +303,26 @@
         <div class="form-container">
             <h3>Vende Tu Oro Ahora</h3>
             <form id="leadForm">
-                <label for="nombre">Nombre:</label>
+                <label for="nombre">Nombre Completo:</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                <div id="nombre-error" class="error-message">Introduce tu nombre completo (nombre y apellido).</div>
 
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required placeholder="Tu correo electrónico">
-
-                <label for="telefono">Número de Contacto:</label>
-                <input type="tel" id="telefono" name="telefono" required placeholder="Tu número de teléfono">
+                <label for="whatsapp">WhatsApp:</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ej: 593999999999" value="593">
+                <div id="whatsapp-error" class="error-message">Introduce un número de WhatsApp válido (mínimo 12 dígitos, incluyendo el código de país).</div>
 
                 <label for="detalles">Detalles de la Cotización:</label>
                 <textarea id="detalles" name="detalles" rows="4" placeholder="Ejemplo: Peso del oro, tipo de joya, etc."></textarea>
 
+                <p style="font-size: 0.9em;">Estamos ubicados en Av. de los Shyris &, Quito 170102, Ecuador. Por favor, dinos qué día y hora te gustaría visitarnos para una cotización.</p>
+                <label for="cita">Fecha y Hora Preferible de Cita: (Opcional)</label>
+                
+                <input type="text" id="cita" name="cita" placeholder="Ej: Lunes 10 a.m.">
+
+                <div class="error-summary">
+                    <p>Por favor, revisa los siguientes campos:</p>
+                    <ul></ul>
+                </div>
                 <button type="submit" class="btn">Solicitar Cotización</button>
             </form>
         </div>
@@ -370,24 +391,76 @@
         </div>
     </footer>
     <script>
-        document.getElementById('leadForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Previene el envío tradicional del form
+   document.getElementById('leadForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            // Aquí iría la lógica para enviar los datos del formulario a un servidor, por ejemplo, usando Fetch API
-            const formData = new FormData(this);
-            const formDataObject = {};
-            formData.forEach((value, key) => { formDataObject[key] = value; });
+    let isValid = true;
+    const errorSummaryList = document.querySelector('.error-summary ul');
+    errorSummaryList.innerHTML = ''; // Limpiar errores previos
+    document.querySelector('.error-summary').style.display = 'none';
 
-            console.log("Datos del formulario:", formDataObject);
-            alert("Gracias por tu interés, nos pondremos en contacto contigo pronto!");
+    // Validación del nombre completo
+    const nombre = document.getElementById('nombre').value;
+    const nombreError = document.getElementById('nombre-error');
+    if (nombre.trim().split(/\s+/).length < 2) {
+        nombreError.style.display = 'block';
+        document.getElementById('nombre').classList.add('error');
+        isValid = false;
+        addErrorToSummary('Nombre completo (nombre y apellido).');
+    } else {
+        nombreError.style.display = 'none';
+        document.getElementById('nombre').classList.remove('error');
+    }
 
-            // Limpiar los campos luego de mostrar el mensaje
-            document.getElementById('leadForm').reset();
+    // Validación del número de WhatsApp
+    const whatsapp = document.getElementById('whatsapp').value;
+    const whatsappError = document.getElementById('whatsapp-error');
+    if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
+        whatsappError.style.display = 'block';
+        document.getElementById('whatsapp').classList.add('error');
+        isValid = false;
+        addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
+    } else {
+        whatsappError.style.display = 'none';
+        document.getElementById('whatsapp').classList.remove('error');
+    }
 
-            // Después de enviar los datos, podrías, por ejemplo, mostrar un mensaje de agradecimiento o redirigir a otra página
-            // alert('Gracias por tu interés. Nos pondremos en contacto contigo pronto.'); 
-        });
-    </script>
+    // Si hay errores, mostrar el resumen
+    if (!isValid) {
+        document.querySelector('.error-summary').style.display = 'block';
+    } else {
+        // Enviar datos y redirigir a WhatsApp
+        const formData = new FormData(this);
+        const formDataObject = {};
+        formData.forEach((value, key) => { formDataObject[key] = value; });
+
+        console.log("Datos del formulario:", formDataObject);
+
+        // Construir el mensaje de WhatsApp
+        let whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
+        whatsappMessage += `*Nombre:* ${encodeURIComponent(formDataObject.nombre)}%0A`;
+        whatsappMessage += `*Cotización:* ${encodeURIComponent(formDataObject.detalles)}%0A`;
+        if (formDataObject.cita) {
+            whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formDataObject.cita)}%0A`;
+        }
+
+        // Redirigir a WhatsApp
+        const whatsappLink = `https://wa.me/593995199146?text=${whatsappMessage}`;
+        window.open(whatsappLink, '_blank'); // Abre en una nueva pestaña
+
+        // Limpiar los campos luego de mostrar el mensaje
+        document.getElementById('leadForm').reset();
+    }
+
+    function addErrorToSummary(errorMessage) {
+        const listItem = document.createElement('li');
+        listItem.textContent = errorMessage;
+        errorSummaryList.appendChild(listItem);
+    }
+});
+
+</script>
+
     <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
     <!-- Reemplaza "your-font-awesome-kit.js" con la URL de tu kit de Font Awesome -->
 </body>
