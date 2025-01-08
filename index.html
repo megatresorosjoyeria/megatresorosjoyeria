@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Tres Oros Joyería - Compra y Recompra de Oro en Quito</title>
+    <meta name="description" content="Vende tu oro al mejor precio en Quito con Mega Tres Oros Joyería. Ofrecemos recompra rápida, transacciones seguras y dinero en tus manos en 5 minutos.">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header, section, footer {
+            padding: 20px;
+        }
+
+        /* --- Estilos del Hero Section --- */
+        .hero {
+       //     background: url('https://via.placeholder.com/1920x800/E6E6FA/000000?text=Imagen+de+Joyas+de+Oro') no-repeat center center; /* Reemplaza con una imagen real de joyas */
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        //    text-shadow: 2px 2px 4px #000;
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+           // text-shadow: 1px 1px 3px #000;
+           color:black;
+        }
+
+        /* --- Estilos de los Botones --- */
+        .btn {
+            background-color: #d4af37; /* Dorado */
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #b5922f; /* Dorado más oscuro */
+        }
+
+        /* --- Estilos del Formulario --- */
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 500px;
+        }
+        .form-container h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #d4af37;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"],
+        .form-container textarea {
+            width: 93%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* --- Estilos de Beneficios --- */
+        .benefits {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .benefits h2 {
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .benefit-item {
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .benefit-item i {
+            color: #d4af37;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        /* --- Estilos de "Cómo Funciona" --- */
+        .how-it-works {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .how-it-works h2 {
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .step-number {
+            background-color: #d4af37;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        /* --- Estilos de la Ubicación --- */
+        .location {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .location h2 {
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+
+        /* --- Estilos del Footer --- */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+        }
+
+        .footer-info a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+        .schedule {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .schedule summary {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .schedule ul {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+        /* --- Estilos para Responsividad --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .benefits, .how-it-works, .location {
+                padding: 20px 10px;
+            }
+            .step {
+                flex-direction: column;
+            }
+            .step-number {
+                margin-bottom: 10px;
+                margin-right: 0px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+            .form-container input[type="text"],
+            .form-container input[type="email"],
+            .form-container input[type="tel"],
+            .form-container textarea {
+                width: 90%;
+            }
+        }
+        .testimonials {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .testimonials h2{
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .testimonial {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+   <img style="max-width:190px;" src="https://i.ibb.co/2F5dcVT/3oroslogo.jpg">
+        <h1>Compramos tus Joyas Usadas Al Mejor Precio Por Gramo de Oro en Quito – ¡Dinero en Tus Manos en 5 Minutos!</h1>
+        <p>Mega Tres Oros Joyería: Confianza, Transparencia y Facilidad en Cada Transacción.</p>
+        <a href="#formulario" class="btn">¡Quiero Mi Cotización!</a>
+    </header>
+
+    <section id="precios" class="benefits">
+        <h2>¿Por Qué Elegir Mega Tres Oros Joyería?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-dollar-sign"></i>
+                <h3>Precios Competitivos</h3>
+                <p>Te garantizamos el mejor precio del mercado por tu oro.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-handshake"></i>
+                <h3>Recompra Segura y Sin Complicaciones</h3>
+                <p>Si deseas recomprar tus joyas te ofrecemos un plan transparente y confiable.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Dinero en Efectivo o Transferencia Inmediata en minutois</h3>
+                <p>Recibe tu dinero al instante, como tú prefieras.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="formulario" class="form-section">
+        <div class="form-container">
+            <h3>Vende Tu Oro Ahora</h3>
+            <form id="leadForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required placeholder="Tu correo electrónico">
+
+                <label for="telefono">Número de Contacto:</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="Tu número de teléfono">
+
+                <label for="detalles">Detalles de la Cotización:</label>
+                <textarea id="detalles" name="detalles" rows="4" placeholder="Ejemplo: Peso del oro, tipo de joya, etc."></textarea>
+
+                <button type="submit" class="btn">Solicitar Cotización</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2>Cómo Funciona</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>Lleva tus joyas a nuestra tienda en Quito.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Valuamos tu oro en minutos con total transparencia.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Recibe tu dinero al instante, en efectivo o transferencia.</p>
+            </div>
+        </div>
+        <a href="#ubicacion" class="btn">Visítanos Hoy</a>
+    </section>
+    <section class="testimonials">
+        <h2>Testimonios de Clientes Satisfechos</h2>
+        <div class="testimonial">
+            <p class="testimonial-content">"Vendí mis joyas de oro en Mega Tres Oros y quedé muy impresionado con el servicio. El proceso fue rápido, el precio fue justo y el personal fue muy amable. ¡Los recomiendo ampliamente!"</p>
+            <p class="testimonial-author">- Juan Pérez</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-content">"Necesitaba dinero rápido y decidí vender algunas joyas que ya no usaba. Mega Tres Oros me ofreció una excelente cotización y me pagaron en efectivo en el momento. ¡Excelente servicio!"</p>
+            <p class="testimonial-author">- María González</p>
+        </div>
+    </section>
+
+    <section id="ubicacion" class="location">
+        <h2>Visítanos</h2>
+        <p>Estamos ubicados en el corazón de Quito, Ecuador.</p>
+        <div class="map-container" id="map">
+            <!-- Aquí puedes incrustar un mapa de Google Maps -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.808576359847!2d-78.48436922547937!3d-0.16976053545739523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a64085d5d6f%3A0x9f08d9b8458785d!2sAv.%20de%20los%20Shyris%20%26%2C%20Quito%20170102%2C%20Ecuador!5e0!3m2!1sen!2sus!4v1697761202872!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p>Av. de los Shyris &, Quito 170102, Ecuador</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.+de+los+Shyris+%26%2C+Quito+170102%2C+Ecuador" target="_blank" class="btn">Obtener Direcciones</a>
+    </section>
+
+    <footer>
+        <div class="footer-info">
+            <p>Mega Tres Oros Joyería</p>
+            <p>Dirección: Av. de los Shyris &, Quito 170102, Ecuador</p>
+            <p>Teléfono: <a href="tel:+593995190080">+593 99 519 0080</a></p>
+            <p>Correo Electrónico: <a href="mailto:info@megatresoros.com">info@megatresoros.com</a> (reemplaza con el correo real)</p>
+            <details class="schedule">
+                <summary>Horario de Atención</summary>
+                <ul>
+                    <li>Martes: 8:30 a. m. – 6:30 p. m.</li>
+                    <li>Miércoles: 8:30 a. m. – 6:30 p. m.</li>
+                    <li>Jueves: 8:30 a. m. – 6:30 p. m.</li>
+                    <li>Viernes: 8:30 a. m. – 6:30 p. m.</li>
+                    <li>Sábado: 9 a. m. – 2 p. m.</li>
+                    <li>Domingo: Cerrado</li>
+                    <li>Lunes: 8:30 a. m. – 6:30 p. m.</li>
+                </ul>
+            </details>
+            <p>© 2023 Mega Tres Oros Joyería. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene el envío tradicional del form
+
+            // Aquí iría la lógica para enviar los datos del formulario a un servidor, por ejemplo, usando Fetch API
+            const formData = new FormData(this);
+            const formDataObject = {};
+            formData.forEach((value, key) => { formDataObject[key] = value; });
+
+            console.log("Datos del formulario:", formDataObject);
+            alert("Gracias por tu interés, nos pondremos en contacto contigo pronto!");
+
+            // Limpiar los campos luego de mostrar el mensaje
+            document.getElementById('leadForm').reset();
+
+            // Después de enviar los datos, podrías, por ejemplo, mostrar un mensaje de agradecimiento o redirigir a otra página
+            // alert('Gracias por tu interés. Nos pondremos en contacto contigo pronto.'); 
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Reemplaza "your-font-awesome-kit.js" con la URL de tu kit de Font Awesome -->
+</body>
+</html>
