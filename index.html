@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mega Tres Oros Joyería - Compra y Recompra de Oro en Quito</title>
     <meta name="description" content="Vende tu oro al mejor precio en Quito con Mega Tres Oros Joyería. Ofrecemos recompra rápida, transacciones seguras y dinero en tus manos en 5 minutos.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -17,21 +18,6 @@
         header, section, footer {
             padding: 20px;
         }
-        .location .map-container {
-    width: 100%; /* Ocupa todo el ancho de la sección */
-    height: 0;
-    padding-bottom: 56.25%; /* Proporción 16:9 (ajusta según necesites) */
-    position: relative; /* Importante para posicionar el iframe dentro */
-    border: 1px solid #ccc;
-}
-.location .map-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; /* Elimina cualquier borde del iframe */
-}
 
         /* --- Estilos del Hero Section --- */
         .hero {
@@ -41,7 +27,7 @@
             text-align: center;
             padding: 20px 20px;
             margin: 0 auto;
-    max-width: 980px;
+            max-width: 980px;
         }
 
         .hero h1 {
@@ -139,8 +125,8 @@
         }
 
         .benefit-item i {
-            color: #d4af37;
-            font-size: 3em;
+            color: #d4af37 !important;
+            font-size: 3em !important;
             margin-bottom: 10px;
         }
 
@@ -186,10 +172,20 @@
             color: #d4af37;
             margin-bottom: 30px;
         }
-        .map-container {
-            width: 100%;
-            height: 300px;
+        .location .map-container {
+            width: 100%; /* Ocupa todo el ancho de la sección */
+            height: 0;
+            padding-bottom: 56.25%; /* Proporción 16:9 (ajusta según necesites) */
+            position: relative; /* Importante para posicionar el iframe dentro */
             border: 1px solid #ccc;
+        }
+        .location .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none; /* Elimina cualquier borde del iframe */
         }
 
         /* --- Estilos del Footer --- */
@@ -287,7 +283,7 @@
 </head>
 <body>
     <header class="hero">
-   <img style="max-width:190px;" src="https://i.ibb.co/2F5dcVT/3oroslogo.jpg">
+        <img style="max-width:190px;" src="https://i.ibb.co/2F5dcVT/3oroslogo.jpg">
         <h1>Compramos tus Joyas Usadas Al Mejor Precio Por Gramo de Oro en Quito – ¡Dinero en Tus Manos en 5 Minutos!</h1>
         <p>Mega Tres Oros Joyería: Confianza, Transparencia y Facilidad en Cada Transacción.</p>
         <a href="#formulario" class="btn">¡Quiero Mi Cotización!</a>
@@ -297,18 +293,18 @@
         <h2>¿Por Qué Elegir Mega Tres Oros Joyería?</h2>
         <div class="benefits-grid">
             <div class="benefit-item">
-                <i class="fas fa-dollar-sign"></i>
+                <span class="fas fa-hand-holding-usd"></span>
                 <h3>Precios Competitivos</h3>
                 <p>Te garantizamos el mejor precio del mercado por tu oro.</p>
             </div>
             <div class="benefit-item">
-                <i class="fas fa-handshake"></i>
+                <span class="fas fa-shield-alt"></span>
                 <h3>Recompra Segura y Sin Complicaciones</h3>
                 <p>Si deseas recomprar tus joyas te ofrecemos un plan transparente y confiable.</p>
             </div>
             <div class="benefit-item">
-                <i class="fas fa-money-bill-wave"></i>
-                <h3>Dinero en Efectivo o Transferencia Inmediata en minutois</h3>
+                <span class="fas fa-money-check-alt"></span>
+                <h3>Dinero en Efectivo o Transferencia Inmediata en minutos</h3>
                 <p>Recibe tu dinero al instante, como tú prefieras.</p>
             </div>
         </div>
@@ -372,14 +368,21 @@
             <p class="testimonial-content">"Necesitaba dinero rápido y decidí vender algunas joyas que ya no usaba. Mega Tres Oros me ofreció una excelente cotización y me pagaron en efectivo en el momento. ¡Excelente servicio!"</p>
             <p class="testimonial-author">- María González</p>
         </div>
+        <div class="testimonial">
+            <p class="testimonial-content">"Compra de oro a precio Justo. Tramites fácil para recuperar las joyas, aros de matrimonio y anillo de compromiso, compran plata y relojes. Excelente atención"</p>
+            <p class="testimonial-author">- Carlos Alvarez Alvarez</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-content">"Excelente atención!"</p>
+            <p class="testimonial-author">- Paulina Patiño Montaño</p>
+        </div>
     </section>
 
     <section id="ubicacion" class="location">
         <h2>Visítanos</h2>
         <p>Estamos ubicados en el corazón de Quito, Ecuador.</p>
         <div class="map-container" id="map">
-            <!-- Aquí puedes incrustar un mapa de Google Maps -->
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.7250785137459!2d-78.47980855029864!3d-0.1706288870272786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59b004f883043%3A0xf9c3de84e92f6076!2sMega%20Tres%20Oros%20Joyer%C3%ADa!5e0!3m2!1ses!2sar!4v1736364162244!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.7250785137459!2d-78.47980855029864!3d-0.1706288870272786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59b004f883043%3A0xf9c3de84e92f6076!2sMega%20Tres%20Oros%20Joyer%C3%ADa!5e0!3m2!1ses!2sar!4v1736364162244!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
         <p>Av. de los Shyris &, Quito 170102, Ecuador</p>
      
     </section>
@@ -476,7 +479,5 @@
 
 </script>
 
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-    <!-- Reemplaza "your-font-awesome-kit.js" con la URL de tu kit de Font Awesome -->
 </body>
 </html>
