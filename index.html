@@ -428,10 +428,12 @@
         </div>
     </footer>
     <script>
-   document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('landingurl').value = window.location.href;
-   });
-   document.getElementById('leadForm').addEventListener('submit', function(event) {
+// En tu landing page, script HTML (con AJAX):
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('landingurl').value = window.location.href;
+});
+
+document.getElementById('leadForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     let isValid = true;
@@ -469,28 +471,54 @@
     if (!isValid) {
         document.querySelector('.error-summary').style.display = 'block';
     } else {
-        // Enviar datos y redirigir a WhatsApp
+        // Enviar datos a la aplicación web usando AJAX
         const formData = new FormData(this);
-        const formDataObject = {};
-        formData.forEach((value, key) => { formDataObject[key] = value; });
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
 
-        console.log("Datos del formulario:", formDataObject);
+        console.log("Datos del formulario a enviar:", formObject);
 
-        // Construir el mensaje de WhatsApp
-        let whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
-        whatsappMessage += `*Nombre:* ${encodeURIComponent(formDataObject.nombre)}%0A`;
-        whatsappMessage += `*Cotización:* ${encodeURIComponent(formDataObject.detalles)}%0A`;
-        if (formDataObject.cita) {
-            whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formDataObject.cita)}%0A`;
-        }
+        fetch(event.target.action, {
+            method: 'POST',
+            body: JSON.stringify(formObject),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error en la respuesta del servidor: ' + response.status);
+            }
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+            if (data.result === 'success') {
+                alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
 
-        // Redirigir a WhatsApp
-        const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-        window.open(whatsappLink, '_blank'); // Abre en una nueva pestaña
+                // Redirigir a WhatsApp DESPUÉS de recibir la respuesta exitosa
+                const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
+                whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
+                whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
+                if (formObject.cita) {
+                    whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
+                }
+                const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+                window.open(whatsappLink, '_blank');
 
-        // Limpiar los campos luego de mostrar el mensaje
-       // document.getElementById('leadForm').submit();
-        document.getElementById('leadForm').reset();
+                // Limpiar los campos luego de enviar el mensaje
+                document.getElementById('leadForm').reset();
+            } else {
+                alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al enviar el formulario:', error);
+            alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
+        });
     }
 
     function addErrorToSummary(errorMessage) {
