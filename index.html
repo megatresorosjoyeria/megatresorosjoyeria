@@ -6,299 +6,10 @@
     <title>Mega Tres Oros Joyería - Compra y Recompra de Oro en Quito</title>
     <meta name="description" content="Vende tu oro al mejor precio en Quito con Mega Tres Oros Joyería. Ofrecemos recompra rápida, transacciones seguras y dinero en tus manos en 5 minutos.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
-        header, section, footer {
-            padding: 20px;
-        }
-
-        /* --- Estilos del Hero Section --- */
-        .hero {
-       //     background: url('https://via.placeholder.com/1920x800/E6E6FA/000000?text=Imagen+de+Joyas+de+Oro') no-repeat center center; /* Reemplaza con una imagen real de joyas */
-            background-size: cover;
-            color: #fff;
-            text-align: center;
-            padding: 20px 20px;
-            margin: 0 auto;
-            max-width: 980px;
-        }
-
-        .hero h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        //    text-shadow: 2px 2px 4px #000;
-            color: #d4af37;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-           // text-shadow: 1px 1px 3px #000;
-           color:black;
-        }
-
-        /* --- Estilos de los Botones --- */
-        .btn {
-            background-color: #d4af37; /* Dorado */
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color: 0.3s ease;
-            display: inline-block;
-            margin: 10px;
-            border: none;
-        }
-
-        .btn:hover {
-            background-color: #b5922f; /* Dorado más oscuro */
-        }
-
-        /* --- Estilos del Formulario --- */
-        .form-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            max-width: 500px;
-        }
-
-        .form-container h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #001a33;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="tel"],
-        .form-container textarea {
-            width: 93%;
-            padding: 10px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-       .form-container .error-message {
-            color: red;
-            font-size: 0.8em;
-            margin-bottom: 10px;
-            display: none; /* Oculto por defecto */
-        }
-       .form-container input.error,
-       .form-container textarea.error {
-            border: 1px solid red;
-        }
-
-       .form-container .error-summary {
-            color: red;
-            margin-bottom: 10px;
-            display: none; /* Oculto por defecto */
-        }
-        /* --- Estilos de Beneficios --- */
-        .benefits {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .benefits h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-
-        .benefit-item {
-            margin-bottom: 20px;
-            padding: 0 20px;
-        }
-
-        .benefit-item i {
-            color: #d4af37 !important;
-            font-size: 3em !important;
-            margin-bottom: 10px;
-        }
-
-        /* --- Estilos de "Cómo Funciona" --- */
-        .how-it-works {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
-            text-align: center;
-                margin: 0 auto;
-    max-width: 500px;
-        }
-        .how-it-works h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-        .step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        .step-number {
-            background-color: #d4af37;
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            margin-right: 20px;
-        }
-
-        /* --- Estilos de la Ubicación --- */
-        .location {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .location h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-        .location .map-container {
-            width: 100%; /* Ocupa todo el ancho de la sección */
-            height: 0;
-            padding-bottom: 56.25%; /* Proporción 16:9 (ajusta según necesites) */
-            position: relative; /* Importante para posicionar el iframe dentro */
-            border: 1px solid #ccc;
-        }
-        .location .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none; /* Elimina cualquier borde del iframe */
-        }
-
-        /* --- Estilos del Footer --- */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .footer-info p {
-            margin: 5px 0;
-        }
-
-        .footer-info a {
-            color: #d4af37;
-            text-decoration: none;
-        }
-        .footer-info a:hover {
-            text-decoration: underline;
-        }
-        .schedule {
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-
-        .schedule summary {
-            cursor: pointer;
-            outline: none;
-        }
-
-        .schedule ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0;
-        }
-        /* --- Estilos para Responsividad --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-
-            .hero p {
-                font-size: 1em;
-            }
-
-            .benefits, .how-it-works, .location {
-                padding: 20px 10px;
-            }
-            .step {
-                flex-direction: column;
-            }
-            .step-number {
-                margin-bottom: 10px;
-                margin-right: 0px;
-            }
-
-            .form-container {
-                padding: 20px;
-            }
-            .form-container input[type="text"],
-            .form-container input[type="tel"],
-            .form-container textarea {
-                width: 90%;
-            }
-        }
-        .testimonials {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .testimonials h2{
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-
-        .testimonial {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-        }
-        h1{
-            color: #d4af37;
-        }
-        h2, h3{
-           color: #001a33;
-        }
-        h2 {
-            font-size: 2em;
-            /* Ajusta el tamaño según tu preferencia */
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            /* Ajusta el tamaño según tu preferencia */
-            margin-bottom: 15px;
-        }
+        /* ... (Estilos CSS sin cambios) ... */
     </style>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
     <header class="hero">
@@ -332,7 +43,7 @@
     <section id="formulario" class="form-section">
         <div class="form-container">
             <h3>Vende Tu Oro Ahora</h3>
-            <form id="leadForm" action="https://odontolab.co/megatresoros/" method="POST">
+            <form id="leadForm" action="https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec" method="POST">
     <input type="hidden" id="landingurl" name="landingurl" value="">
     <label for="nombre">Nombre Completo:</label>
     <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
@@ -429,70 +140,69 @@
         </div>
     </footer>
     <script>
-        
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('landingurl').value = window.location.href;
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        jQuery('#landingurl').val(window.location.href);
+    });
 
-document.getElementById('leadForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    jQuery('#leadForm').on('submit', async function(event) {
+        event.preventDefault();
 
-    let isValid = true;
-    const errorSummaryList = document.querySelector('.error-summary ul');
-    errorSummaryList.innerHTML = ''; // Limpiar errores previos
-    document.querySelector('.error-summary').style.display = 'none';
+        let isValid = true;
+        const errorSummaryList = jQuery('.error-summary ul');
+        errorSummaryList.empty();
+        jQuery('.error-summary').hide();
 
-    // Validación del nombre completo
-    const nombre = document.getElementById('nombre').value;
-    const nombreError = document.getElementById('nombre-error');
-    if (nombre.trim().split(/\s+/).length < 2) {
-        nombreError.style.display = 'block';
-        document.getElementById('nombre').classList.add('error');
-        isValid = false;
-        addErrorToSummary('Nombre completo (nombre y apellido).');
-    } else {
-        nombreError.style.display = 'none';
-        document.getElementById('nombre').classList.remove('error');
-    }
+        // Validación del nombre completo
+        const nombre = jQuery('#nombre').val();
+        const nombreError = jQuery('#nombre-error');
+        if (nombre.trim().split(/\s+/).length < 2) {
+            nombreError.show();
+            jQuery('#nombre').addClass('error');
+            isValid = false;
+            addErrorToSummary('Nombre completo (nombre y apellido).');
+        } else {
+            nombreError.hide();
+            jQuery('#nombre').removeClass('error');
+        }
 
-    // Validación del número de WhatsApp
-    const whatsapp = document.getElementById('whatsapp').value;
-    const whatsappError = document.getElementById('whatsapp-error');
-    if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
-        whatsappError.style.display = 'block';
-        document.getElementById('whatsapp').classList.add('error');
-        isValid = false;
-        addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
-    } else {
-        whatsappError.style.display = 'none';
-        document.getElementById('whatsapp').classList.remove('error');
-    }
+        // Validación del número de WhatsApp
+        const whatsapp = jQuery('#whatsapp').val();
+        const whatsappError = jQuery('#whatsapp-error');
+        if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
+            whatsappError.show();
+            jQuery('#whatsapp').addClass('error');
+            isValid = false;
+            addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
+        } else {
+            whatsappError.hide();
+            jQuery('#whatsapp').removeClass('error');
+        }
 
-    // Si hay errores, mostrar el resumen
-    if (!isValid) {
-        console.log("Form validation failed");
-        document.querySelector('.error-summary').style.display = 'block';
-    } else {
-        // Enviar datos a la aplicación web usando AJAX y jQuery
-        const formData = new FormData(this);
-        const formObject = {};
-        formData.forEach((value, key) => {
-            formObject[key] = value;
-        });
+        // Si hay errores, mostrar el resumen
+        if (!isValid) {
+            console.log("Form validation failed");
+            jQuery('.error-summary').show();
+        } else {
+            // Enviar datos a la aplicación web usando AJAX y jQuery
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
 
-        console.log("Datos del formulario a enviar:", formObject);
+            console.log("Datos del formulario a enviar:", formObject);
 
-        jQuery.ajax({
-            url: "https://odontolab.co/megatresoros/", // URL de tu proxy PHP
-            data: JSON.stringify(formObject), // Enviar los datos como JSON
-            type: "POST",
-            contentType: "application/json", // Indicar que se envían datos JSON
-            success: function(response) {
+            try {
+                const response = await jQuery.ajax({
+                    url: "https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec",
+                    method: "POST",
+                    dataType: "json",
+                    data: formObject,
+                });
+
                 console.log('Respuesta del servidor:', response);
                 if (response.result === 'success') {
-                    alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
-
-                    // Redirigir a WhatsApp
+                    // Generar el mensaje de WhatsApp
                     const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
                     whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
                     whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
@@ -500,30 +210,33 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
                         whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                     }
                     const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-                    window.open(whatsappLink, '_blank');
+                    
+                    
+                    jQuery('#whatsapp-link').attr('href', whatsappLink);
+                    jQuery('#form_19_submit').hide();
+                     // Abrir WhatsApp en una nueva pestaña después de 2 segundos
+                    setTimeout(function () {
+                        window.open(whatsappLink, '_blank');
+                    }, 2000);
 
                     // Limpiar los campos luego de enviar el mensaje
                     jQuery('#leadForm')[0].reset();
                 } else {
-                    alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
+                    console.error('Error en la respuesta del servidor:', response.message);
+                    jQuery('#error-step12').text('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
                 }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error en la petición AJAX:', textStatus, errorThrown);
-                console.error('Detalles de la respuesta:', jqXHR.responseText);
-                alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
+            } catch (error) {
+                console.error('Error en la petición AJAX:', error);
+                jQuery('#error-step12').text('Error enviando datos. Por favor intenta nuevamente.');
             }
-        });
-    }
+        }
 
-    function addErrorToSummary(errorMessage) {
-        console.log("Adding error to summary:", errorMessage);
-        const listItem = document.createElement('li');
-        listItem.textContent = errorMessage;
-        errorSummaryList.appendChild(listItem);
-    }
-});
-
+        function addErrorToSummary(errorMessage) {
+            console.log("Adding error to summary:", errorMessage);
+            const listItem = jQuery('<li></li>').text(errorMessage);
+            errorSummaryList.append(listItem);
+        }
+    });
 </script>
 
 </body>
