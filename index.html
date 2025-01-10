@@ -428,13 +428,16 @@
         </div>
     </footer>
     <script>
-// En tu landing page, script HTML (con AJAX):
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOMContentLoaded event fired"); // Verificar si el evento DOMContentLoaded se dispara
     document.getElementById('landingurl').value = window.location.href;
+    console.log("Landing URL set to:", window.location.href); // Verificar que la URL se establece correctamente
 });
 
 document.getElementById('leadForm').addEventListener('submit', function(event) {
+    console.log("Form submit event fired"); // Verificar si el evento submit se dispara
     event.preventDefault();
+    console.log("Default form submission prevented");
 
     let isValid = true;
     const errorSummaryList = document.querySelector('.error-summary ul');
@@ -469,6 +472,7 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
 
     // Si hay errores, mostrar el resumen
     if (!isValid) {
+        console.log("Form validation failed");
         document.querySelector('.error-summary').style.display = 'block';
     } else {
         // Enviar datos a la aplicación web usando AJAX
@@ -488,6 +492,7 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
             }
         })
         .then(response => {
+            console.log("Response received:", response); // Verificar la respuesta del servidor
             if (response.ok) {
                 return response.json();
             } else {
@@ -495,11 +500,11 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
             }
         })
         .then(data => {
-            console.log('Respuesta del servidor:', data);
+            console.log('Respuesta del servidor (JSON):', data);
             if (data.result === 'success') {
                 alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
 
-                // Redirigir a WhatsApp DESPUÉS de recibir la respuesta exitosa
+                // Redirigir a WhatsApp
                 const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
                 whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
                 whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
@@ -522,6 +527,7 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
     }
 
     function addErrorToSummary(errorMessage) {
+        console.log("Adding error to summary:", errorMessage); // Verificar si se agregan errores al resumen
         const listItem = document.createElement('li');
         listItem.textContent = errorMessage;
         errorSummaryList.appendChild(listItem);
