@@ -429,100 +429,113 @@
         </div>
     </footer>
     <script>
-    jQuery(document).ready(function() {
-        jQuery('#landingurl').val(window.location.href);
-    
-        jQuery('#leadForm').on('submit', async function(event) {
-            event.preventDefault();
-    
-            let isValid = true;
-            const errorSummaryList = jQuery('.error-summary ul');
-            errorSummaryList.empty();
-            jQuery('.error-summary').hide();
-    
-            // Validación del nombre completo
-            const nombre = jQuery('#nombre').val();
-            const nombreError = jQuery('#nombre-error');
-            if (nombre.trim().split(/\s+/).length < 2) {
-                nombreError.show();
-                jQuery('#nombre').addClass('error');
-                isValid = false;
-                addErrorToSummary('Nombre completo (nombre y apellido).');
-            } else {
-                nombreError.hide();
-                jQuery('#nombre').removeClass('error');
-            }
-    
-            // Validación del número de WhatsApp
-            const whatsapp = jQuery('#whatsapp').val();
-            const whatsappError = jQuery('#whatsapp-error');
-            if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
-                whatsappError.show();
-                jQuery('#whatsapp').addClass('error');
-                isValid = false;
-                addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
-            } else {
-                whatsappError.hide();
-                jQuery('#whatsapp').removeClass('error');
-            }
-    
-            // Si hay errores, mostrar el resumen
-            if (!isValid) {
-                console.log("Form validation failed");
-                jQuery('.error-summary').show();
-            } else {
-                // Enviar datos a la aplicación web usando AJAX y jQuery
-                const formData = new FormData(this);
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
+jQuery(document).ready(function() {
+    jQuery('#landingurl').val(window.location.href);
+
+    jQuery('#leadForm').on('submit', async function(event) {
+        event.preventDefault();
+
+        let isValid = true;
+        const errorSummaryList = jQuery('.error-summary ul');
+        errorSummaryList.empty();
+        jQuery('.error-summary').hide();
+
+        // Validación del nombre completo
+        const nombre = jQuery('#nombre').val();
+        const nombreError = jQuery('#nombre-error');
+        if (nombre.trim().split(/\s+/).length < 2) {
+            nombreError.show();
+            jQuery('#nombre').addClass('error');
+            isValid = false;
+            addErrorToSummary('Nombre completo (nombre y apellido).');
+        } else {
+            nombreError.hide();
+            jQuery('#nombre').removeClass('error');
+        }
+
+        // Validación del número de WhatsApp
+        const whatsapp = jQuery('#whatsapp').val();
+        const whatsappError = jQuery('#whatsapp-error');
+        if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
+            whatsappError.show();
+            jQuery('#whatsapp').addClass('error');
+            isValid = false;
+            addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
+        } else {
+            whatsappError.hide();
+            jQuery('#whatsapp').removeClass('error');
+        }
+
+        // Si hay errores, mostrar el resumen
+        if (!isValid) {
+            console.log("Form validation failed");
+            jQuery('.error-summary').show();
+        } else {
+            // Enviar datos a la aplicación web usando AJAX y jQuery
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            console.log("Datos del formulario a enviar:", formObject);
+
+            try {
+                const response = await jQuery.ajax({
+                    url: "https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec",
+                    method: "POST",
+                    dataType: "json",
+                    data: formObject,
                 });
-    
-                console.log("Datos del formulario a enviar:", formObject);
-    
-                try {
-                    const response = await jQuery.ajax({
-                        url: "https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec",
-                        method: "POST",
-                        dataType: "json",
-                        data: formObject,
-                    });
-    
-                    console.log('Respuesta del servidor:', response);
-                    if (response.result === 'success') {
-                        // Generar el mensaje de WhatsApp
-                        const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
-                        whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
-                        whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
-                        if (formObject.cita) {
-                            whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
-                        }
-                        // Se usa let en lugar de const
-                        let whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-    
-                        // Redirigir a WhatsApp después de 2 segundos
-                        setTimeout(function () {
-                            window.open(whatsappLink, '_blank');
-                        }, 2000);
-    
-                        // Limpiar los campos luego de enviar el mensaje
-                        jQuery('#leadForm')[0].reset();
-                    } else {
-                        console.error('Error en la respuesta del servidor:', response.message);
-                        alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.'); 
-                    }
-                } catch (error) {
-                    console.error('Error en la petición AJAX:', error);
-                    alert('Error enviando datos. Por favor intenta nuevamente.'); 
+
+                console.log('Respuesta del servidor:', response);
+
+                // Generar el mensaje de WhatsApp
+                const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
+                whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
+                whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
+                if (formObject.cita) {
+                    whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                 }
+                // Se usa let en lugar de const
+                let whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+
+                // Redirigir a WhatsApp después de 2 segundos *sin importar la respuesta*
+                setTimeout(function () {
+                    window.open(whatsappLink, '_blank');
+                }, 2000);
+
+                // Limpiar los campos luego de enviar el mensaje
+                jQuery('#leadForm')[0].reset();
+
+            } catch (error) {
+                console.error('Error en la petición AJAX:', error);
+                console.error('Detalles de la respuesta:', jqXHR.responseText);
+
+                // Generar el mensaje de WhatsApp incluso si hay un error
+                const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
+                whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
+                whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
+                if (formObject.cita) {
+                    whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
+                }
+                let whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+
+                // Redirigir a WhatsApp después de 2 segundos *sin importar la respuesta*
+                setTimeout(function () {
+                    window.open(whatsappLink, '_blank');
+                }, 2000);
+
+                // Limpiar los campos luego de enviar el mensaje
+                jQuery('#leadForm')[0].reset();
             }
-    
-            function addErrorToSummary(errorMessage) {
-                console.log("Adding error to summary:", errorMessage);
-                const listItem = jQuery('<li></li>').text(errorMessage);
-                errorSummaryList.append(listItem);
-            }
-        });
+        }
+
+        function addErrorToSummary(errorMessage) {
+            console.log("Adding error to summary:", errorMessage);
+            const listItem = jQuery('<li></li>').text(errorMessage);
+            errorSummaryList.append(listItem);
+        }
     });
     </script>
 
