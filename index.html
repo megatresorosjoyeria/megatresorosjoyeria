@@ -430,9 +430,8 @@
         </div>
     </footer>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-        jQuery('#landingurl').val(window.location.href);
-    });
+jQuery(document).ready(function() {
+    jQuery('#landingurl').val(window.location.href);
 
     jQuery('#leadForm').on('submit', async function(event) {
         event.preventDefault();
@@ -499,12 +498,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (formObject.cita) {
                         whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                     }
-                    let whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`; // Usa let en lugar de const
-                    
-                    
-                    jQuery('#whatsapp-link').attr('href', whatsappLink);
-                    jQuery('#form_19_submit').hide();
-                     // Abrir WhatsApp en una nueva pestaña después de 2 segundos
+                    // No modificar whatsappLink, usar directamente en window.open
+                    const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+
+                    // Redirigir a WhatsApp después de 2 segundos
                     setTimeout(function () {
                         window.open(whatsappLink, '_blank');
                     }, 2000);
@@ -513,11 +510,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     jQuery('#leadForm')[0].reset();
                 } else {
                     console.error('Error en la respuesta del servidor:', response.message);
-                    jQuery('#error-step12').text('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
+                    alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.'); // Cambiar a alerta
                 }
             } catch (error) {
                 console.error('Error en la petición AJAX:', error);
-                jQuery('#error-step12').text('Error enviando datos. Por favor intenta nuevamente.');
+                alert('Error enviando datos. Por favor intenta nuevamente.'); // Cambiar a alerta
             }
         }
 
@@ -527,6 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
             errorSummaryList.append(listItem);
         }
     });
+});
 </script>
 
 </body>
