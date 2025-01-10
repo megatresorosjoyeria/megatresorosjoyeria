@@ -298,6 +298,7 @@
             margin-bottom: 15px;
         }
     </style>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
     <header class="hero">
@@ -428,16 +429,13 @@
         </div>
     </footer>
     <script>
+        
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOMContentLoaded event fired"); // Verificar si el evento DOMContentLoaded se dispara
     document.getElementById('landingurl').value = window.location.href;
-    console.log("Landing URL set to:", window.location.href); // Verificar que la URL se establece correctamente
 });
 
 document.getElementById('leadForm').addEventListener('submit', function(event) {
-    console.log("Form submit event fired"); // Verificar si el evento submit se dispara
     event.preventDefault();
-    console.log("Default form submission prevented");
 
     let isValid = true;
     const errorSummaryList = document.querySelector('.error-summary ul');
@@ -475,7 +473,7 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
         console.log("Form validation failed");
         document.querySelector('.error-summary').style.display = 'block';
     } else {
-        // Enviar datos a la aplicación web usando AJAX
+        // Enviar datos a la aplicación web usando AJAX y jQuery
         const formData = new FormData(this);
         const formObject = {};
         formData.forEach((value, key) => {
@@ -484,50 +482,42 @@ document.getElementById('leadForm').addEventListener('submit', function(event) {
 
         console.log("Datos del formulario a enviar:", formObject);
 
-        fetch(event.target.action, {
-            method: 'POST',
-            body: JSON.stringify(formObject),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            console.log("Response received:", response); // Verificar la respuesta del servidor
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-        })
-        .then(data => {
-            console.log('Respuesta del servidor (JSON):', data);
-            if (data.result === 'success') {
-                alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
+        jQuery.ajax({
+            url: "https://odontolab.co/megatresoros/", // URL de tu proxy PHP
+            data: JSON.stringify(formObject), // Enviar los datos como JSON
+            type: "POST",
+            contentType: "application/json", // Indicar que se envían datos JSON
+            success: function(response) {
+                console.log('Respuesta del servidor:', response);
+                if (response.result === 'success') {
+                    alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
 
-                // Redirigir a WhatsApp
-                const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
-                whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
-                whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
-                if (formObject.cita) {
-                    whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
+                    // Redirigir a WhatsApp
+                    const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
+                    whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
+                    whatsappMessage += `*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
+                    if (formObject.cita) {
+                        whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
+                    }
+                    const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+                    window.open(whatsappLink, '_blank');
+
+                    // Limpiar los campos luego de enviar el mensaje
+                    jQuery('#leadForm')[0].reset();
+                } else {
+                    alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
                 }
-                const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-                window.open(whatsappLink, '_blank');
-
-                // Limpiar los campos luego de enviar el mensaje
-                document.getElementById('leadForm').reset();
-            } else {
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error en la petición AJAX:', textStatus, errorThrown);
+                console.error('Detalles de la respuesta:', jqXHR.responseText);
                 alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
             }
-        })
-        .catch(error => {
-            console.error('Error al enviar el formulario:', error);
-            alert('Error al enviar la cotización. Por favor, inténtalo de nuevo.');
         });
     }
 
     function addErrorToSummary(errorMessage) {
-        console.log("Adding error to summary:", errorMessage); // Verificar si se agregan errores al resumen
+        console.log("Adding error to summary:", errorMessage);
         const listItem = document.createElement('li');
         listItem.textContent = errorMessage;
         errorSummaryList.appendChild(listItem);
