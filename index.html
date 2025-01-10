@@ -430,7 +430,7 @@
         </div>
     </footer>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         jQuery('#landingurl').val(window.location.href);
     });
 
@@ -499,7 +499,7 @@
                     if (formObject.cita) {
                         whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                     }
-                    const whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
+                    let whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`; // Usa let en lugar de const
                     
                     
                     jQuery('#whatsapp-link').attr('href', whatsappLink);
