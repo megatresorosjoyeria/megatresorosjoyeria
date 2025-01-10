@@ -52,7 +52,7 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color: 0.3s ease;
             display: inline-block;
             margin: 10px;
             border: none;
@@ -331,7 +331,8 @@
     <section id="formulario" class="form-section">
         <div class="form-container">
             <h3>Vende Tu Oro Ahora</h3>
-            <form id="leadForm">
+            <form id="leadForm"  action="URL_DE_TU_APLICACION_WEB" method="POST">
+                <input type="hidden" id="landingurl" name="landingurl" value="">
                 <label for="nombre">Nombre Completo:</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
                 <div id="nombre-error" class="error-message">Introduce tu nombre completo (nombre y apellido).</div>
@@ -427,6 +428,9 @@
         </div>
     </footer>
     <script>
+   document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('landingurl').value = window.location.href;
+   });
    document.getElementById('leadForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -485,6 +489,7 @@
         window.open(whatsappLink, '_blank'); // Abre en una nueva pestaña
 
         // Limpiar los campos luego de mostrar el mensaje
+       // document.getElementById('leadForm').submit();
         document.getElementById('leadForm').reset();
     }
 
