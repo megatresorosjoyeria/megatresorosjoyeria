@@ -299,6 +299,16 @@
             margin-bottom: 15px;
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11551405281"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11551405281');
+</script>
+
 </head>
 <body>
     <header class="hero">
@@ -490,6 +500,9 @@
     
                     console.log('Respuesta del servidor:', response);
                     if (response.result === 'success') {
+                        gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
+                        console.log("Evento de conversión de Google Ads disparado.");
+                        
                         // Generar el mensaje de WhatsApp
                         const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
                         whatsappMessage += `*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A`;
@@ -514,6 +527,8 @@
                 } catch (error) {
                     console.error('Error en la petición AJAX:', error);
                     //Se elimina la variable de entorno
+                    gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
+                    console.log("Evento de conversión de Google Ads disparado (caso de error AJAX).");
                     
                     // Generar el mensaje de WhatsApp incluso si hay un error
                     const whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A`;
