@@ -3,567 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Tres Oros Joyería - Compra y Recompra de Oro en Quito</title>
+    <title>Mega Tres Oros Joyería - Compra y Venta de Oro en Quito</title>
     <meta name="description" content="Vende tu oro al mejor precio en Quito con Mega Tres Oros Joyería. Ofrecemos recompra rápida, transacciones seguras y dinero en tus manos en 5 minutos.">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
 
-        header, section, footer {
-            padding: 20px;
-        }
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
 
-        /* --- Estilos del Hero Section --- */
-        .hero {
-       //     background: url('https://via.placeholder.com/1920x800/E6E6FA/000000?text=Imagen+de+Joyas+de+Oro') no-repeat center center; /* Reemplaza con una imagen real de joyas */
-            background-size: cover;
-            color: #fff;
-            text-align: center;
-            padding: 20px 20px;
-            margin: 0 auto;
-            max-width: 980px;
-        }
-
-        .hero h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        //    text-shadow: 2px 2px 4px #000;
-            color: #d4af37;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-           // text-shadow: 1px 1px 3px #000;
-           color:black;
-        }
-
-        /* --- Estilos de los Botones --- */
-        .btn {
-            background-color: #d4af37; /* Dorado */
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color: 0.3s ease;
-            display: inline-block;
-            margin: 10px;
-            border: none;
-        }
-
-        .btn:hover {
-            background-color: #b5922f; /* Dorado más oscuro */
-        }
-
-        /* --- Estilos del Formulario --- */
-        .form-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            max-width: 500px;
-        }
-
-        .form-container h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #001a33;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="tel"],
-        .form-container textarea {
-            width: 93%;
-            padding: 10px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-       .form-container .error-message {
-            color: red;
-            font-size: 0.8em;
-            margin-bottom: 10px;
-            display: none; /* Oculto por defecto */
-        }
-       .form-container input.error,
-       .form-container textarea.error {
-            border: 1px solid red;
-        }
-
-       .form-container .error-summary {
-            color: red;
-            margin-bottom: 10px;
-            display: none; /* Oculto por defecto */
-        }
-        /* --- Estilos de Beneficios --- */
-        .benefits {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .benefits h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-
-        .benefit-item {
-            margin-bottom: 20px;
-            padding: 0 20px;
-        }
-
-        .benefit-item i {
-            color: #d4af37 !important;
-            font-size: 3em !important;
-            margin-bottom: 10px;
-        }
-
-        /* --- Estilos de "Cómo Funciona" --- */
-        .how-it-works {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
-            text-align: center;
-                margin: 0 auto;
-    max-width: 500px;
-        }
-        .how-it-works h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-        .step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        .step-number {
-            background-color: #d4af37;
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            margin-right: 20px;
-        }
-
-        /* --- Estilos de la Ubicación --- */
-        .location {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .location h2 {
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-        .location .map-container {
-            width: 100%; /* Ocupa todo el ancho de la sección */
-            height: 0;
-            padding-bottom: 56.25%; /* Proporción 16:9 (ajusta según necesites) */
-            position: relative; /* Importante para posicionar el iframe dentro */
-            border: 1px solid #ccc;
-        }
-        .location .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none; /* Elimina cualquier borde del iframe */
-        }
-
-        /* --- Estilos del Footer --- */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .footer-info p {
-            margin: 5px 0;
-        }
-
-        .footer-info a {
-            color: #d4af37;
-            text-decoration: none;
-        }
-        .footer-info a:hover {
-            text-decoration: underline;
-        }
-        .schedule {
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-
-        .schedule summary {
-            cursor: pointer;
-            outline: none;
-        }
-
-        .schedule ul {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0;
-        }
-        /* --- Estilos para Responsividad --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-
-            .hero p {
-                font-size: 1em;
-            }
-
-            .benefits, .how-it-works, .location {
-                padding: 20px 10px;
-            }
-            .step {
-                flex-direction: column;
-            }
-            .step-number {
-                margin-bottom: 10px;
-                margin-right: 0px;
-            }
-
-            .form-container {
-                padding: 20px;
-            }
-            .form-container input[type="text"],
-            .form-container input[type="tel"],
-            .form-container textarea {
-                width: 90%;
-            }
-        }
-        .testimonials {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .testimonials h2{
-            color: #001a33;
-            margin-bottom: 30px;
-        }
-
-        .testimonial {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-        }
-        h1{
-            color: #d4af37;
-        }
-        h2, h3{
-           color: #001a33;
-        }
-        h2 {
-            font-size: 2em;
-            /* Ajusta el tamaño según tu preferencia */
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            /* Ajusta el tamaño según tu preferencia */
-            margin-bottom: 15px;
-        }
-    </style>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11551405281"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-11551405281');
-</script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11551405281"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-11551405281');
+    </script>
 </head>
 <body>
+    <!-- Header / Hero Section -->
     <header class="hero">
-   <img style="max-width:190px;" src="https://i.ibb.co/2F5dcVT/3oroslogo.jpg">
-        <h1>Compramos tus Joyas Usadas Al Mejor Precio Por Gramo de Oro en Quito – ¡Dinero en Tus Manos en 5 Minutos!</h1>
-        <p>Mega Tres Oros Joyería: Confianza, Transparencia y Facilidad en Cada Transacción.</p>
-        <a href="#formulario" class="btn">¡Quiero Mi Cotización!</a>
+        <div class="hero-content animate-on-scroll">
+            <div class="hero-logo">
+                <img src="https://i.ibb.co/2F5dcVT/3oroslogo.jpg" alt="Mega Tres Oros Logo">
+            </div>
+            <h1>Compramos tus Joyas Usadas Al Mejor Precio Por Gramo de Oro en Quito</h1>
+            <p>¡Dinero en Tus Manos en 5 Minutos!</p>
+            <p>Mega Tres Oros Joyería: Confianza, Transparencia y Facilidad en Cada Transacción.</p>
+            <div class="hero-buttons">
+                <a href="#formulario" class="btn">¡Quiero Mi Cotización!</a>
+                <a href="#catalogo" class="btn btn-secondary">Ver Catálogo de Joyas</a>
+            </div>
+        </div>
     </header>
 
-    <section id="precios" class="benefits">
-        <h2>¿Por Qué Elegir Mega Tres Oros Joyería?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-item">
-                <span class="fas fa-hand-holding-usd"></span>
-                <h3>Precios Competitivos</h3>
-                <p>Te garantizamos el mejor precio del mercado por tu oro.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="fas fa-shield-alt"></span>
-                <h3>Recompra Segura y Sin Complicaciones</h3>
-                <p>Si deseas recomprar tus joyas te ofrecemos un plan transparente y confiable.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="fas fa-money-check-alt"></span>
-                <h3>Dinero en Efectivo o Transferencia Inmediata en minutos</h3>
-                <p>Recibe tu dinero al instante, como tú prefieras.</p>
+    <!-- Beneficios Section -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="animate-on-scroll">¿Por Qué Elegir Mega Tres Oros Joyería?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-hand-holding-usd"></span>
+                    <h3>Precios Competitivos</h3>
+                    <p>Te garantizamos el mejor precio del mercado por tu oro, con valoraciones justas y transparentes.</p>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-shield-alt"></span>
+                    <h3>Recompra Segura</h3>
+                    <p>Si deseas recomprar tus joyas te ofrecemos un plan transparente y confiable, sin complicaciones.</p>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-money-check-alt"></span>
+                    <h3>Pago Inmediato</h3>
+                    <p>Recibe tu dinero al instante, en efectivo o transferencia, como tú prefieras.</p>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-gem"></span>
+                    <h3>Expertos en Joyería</h3>
+                    <p>Nuestro equipo de profesionales evalúa con precisión tus joyas para ofrecerte el mejor valor.</p>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-store"></span>
+                    <h3>Múltiples Sucursales</h3>
+                    <p>Contamos con 4 ubicaciones estratégicas en Quito para tu comodidad.</p>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <span class="fas fa-clock"></span>
+                    <h3>Proceso Rápido</h3>
+                    <p>Valoramos y pagamos por tus joyas en tan solo 5 minutos, respetando tu tiempo.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Formulario Unificado Section -->
     <section id="formulario" class="form-section">
-        <div class="form-container">
-            <h3>Vende Tu Oro Ahora</h3>
-            <form id="leadForm" action="https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec" method="POST">
-    <input type="hidden" id="landingurl" name="landingurl" value="">
-    <label for="nombre">Nombre Completo:</label>
-    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
-    <div id="nombre-error" class="error-message">Introduce tu nombre completo (nombre y apellido).</div>
+        <div class="container">
+            <div class="form-container animate-on-scroll">
+                <h3>Solicita Información</h3>
+                <form id="leadForm" action="https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec" method="POST">
+                    <input type="hidden" id="landingurl" name="landingurl" value="">
 
-    <label for="whatsapp">WhatsApp:</label>
-    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ej: 593999999999" value="593">
-    <div id="whatsapp-error" class="error-message">Introduce un número de WhatsApp válido (mínimo 12 dígitos, incluyendo el código de país).</div>
+                    <div class="form-group">
+                        <label>¿Qué te interesa?</label>
+                        <div class="radio-group tipo-consulta-radio">
+                            <div class="radio-option">
+                                <input type="radio" id="venta-oro" name="tipo_consulta" value="venta_oro" checked>
+                                <label for="venta-oro">Vender Oro o Joyas</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="compra-oro" name="tipo_consulta" value="compra_oro">
+                                <label for="compra-oro">Comprar Oro</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="ver-catalogo" name="tipo_consulta" value="catalogo_joyas">
+                                <label for="ver-catalogo">Ver Catálogo de Joyas</label>
+                            </div>
+                        </div>
+                        <div id="tipo-consulta-error" class="error-message">Selecciona el tipo de consulta.</div>
+                    </div>
 
-    <label for="detalles">Detalles de la Cotización:</label>
-    <textarea id="detalles" name="detalles" rows="4" placeholder="Ejemplo: Peso del oro, tipo de joya, etc."></textarea>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                        <div id="nombre-error" class="error-message">Introduce tu nombre completo (nombre y apellido).</div>
+                    </div>
 
-    <p style="font-size: 0.9em;">Estamos ubicados en Av. de los Shyris &, Quito 170102, Ecuador. Por favor, dinos qué día y hora te gustaría visitarnos para una cotización.</p>
-    <label for="cita">Fecha y Hora Preferible de Cita: (Opcional)</label>
-    
-    <input type="text" id="cita" name="cita" placeholder="Ej: Lunes 10 a.m.">
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp:</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ej: 593999999999" value="593">
+                        <div id="whatsapp-error" class="error-message">Introduce un número de WhatsApp válido (mínimo 12 dígitos, incluyendo el código de país).</div>
+                    </div>
 
-    <div class="error-summary">
-        <p>Por favor, revisa los siguientes campos:</p>
-        <ul></ul>
-    </div>
-    <button type="submit" class="btn">Solicitar Cotización</button>
-</form>
+                    <div class="form-group" id="detalles-group">
+                        <label for="detalles">Detalles de la Cotización:</label>
+                        <textarea id="detalles" name="detalles" rows="4" placeholder="Ejemplo: Peso del oro, tipo de joya, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selecciona la Sucursal:</label>
+                        <div class="radio-group sucursal-radio">
+                            <div class="radio-option">
+                                <input type="radio" id="sucursal-sur" name="sucursal" value="Sur - Av. Maldonado y Gil Martínez">
+                                <label for="sucursal-sur">Sur - Av. Maldonado y Gil Martínez</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="sucursal-centro" name="sucursal" value="Centro - Olmedo y Guayaquil">
+                                <label for="sucursal-centro">Centro - Olmedo y Guayaquil</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="sucursal-centro-norte" name="sucursal" value="Centro-Norte - Av. Colón y 9 de Octubre">
+                                <label for="sucursal-centro-norte">Centro-Norte - Av. Colón y 9 de Octubre</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="sucursal-norte" name="sucursal" value="Norte - Av. de los Shyris y Gaspar de Villarroel">
+                                <label for="sucursal-norte">Norte - Av. de los Shyris y Gaspar de Villarroel</label>
+                            </div>
+                        </div>
+                        <div id="sucursal-error" class="error-message">Por favor selecciona una sucursal.</div>
+                    </div>
+
+                    <div class="form-group" id="cita-group">
+                        <p>Por favor, dinos qué día y hora te gustaría visitarnos para una cotización.</p>
+                        <label for="cita">Fecha y Hora Preferible de Cita: (Opcional)</label>
+                        <input type="text" id="cita" name="cita" placeholder="Ej: Lunes 10 a.m.">
+                    </div>
+
+                    <div class="error-summary">
+                        <p>Por favor, revisa los siguientes campos:</p>
+                        <ul></ul>
+                    </div>
+
+                    <button type="submit" class="btn" id="submit-button">Solicitar Información</button>
+                </form>
+            </div>
         </div>
     </section>
 
+    <!-- Cómo Funciona Section -->
     <section class="how-it-works">
-        <h2>Cómo Funciona</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <p>Lleva tus joyas a nuestra tienda en Quito.</p>
+        <div class="container">
+            <h2 class="animate-on-scroll">Cómo Funciona</h2>
+            <div class="steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <p>Lleva tus joyas a cualquiera de nuestras tiendas en Quito. No necesitas cita previa, pero puedes agendar una si lo prefieres.</p>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <p>Nuestros expertos valuarán tu oro en minutos con total transparencia, explicándote cada detalle del proceso.</p>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <p>Recibe tu dinero al instante, en efectivo o transferencia bancaria, según tu preferencia.</p>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <p>Si lo deseas, puedes acceder a nuestro plan de recompra para recuperar tus joyas en el futuro.</p>
+                </div>
             </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <p>Valuamos tu oro en minutos con total transparencia.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <p>Recibe tu dinero al instante, en efectivo o transferencia.</p>
-            </div>
-        </div>
-        <a href="#formulario" class="btn">Visítanos Hoy</a>
-    </section>
-    <section class="testimonials">
-        <img src="https://i.ibb.co/RN1VCP2/joyasuasadastresoros.jpg" style="max-width:90%;">
-        <h2>Testimonios de Clientes Satisfechos</h2>
-        <div class="testimonial">
-            <p class="testimonial-content">"Vendí mis joyas de oro en Mega Tres Oros y quedé muy impresionado con el servicio. El proceso fue rápido, el precio fue justo y el personal fue muy amable. ¡Los recomiendo ampliamente!"</p>
-            <p class="testimonial-author">- Juan Pérez</p>
-        </div>
-        <div class="testimonial">
-            <p class="testimonial-content">"Necesitaba dinero rápido y decidí vender algunas joyas que ya no usaba. Mega Tres Oros me ofreció una excelente cotización y me pagaron en efectivo en el momento. ¡Excelente servicio!"</p>
-            <p class="testimonial-author">- María González</p>
-        </div>
-        <div class="testimonial">
-            <p class="testimonial-content">"Compra de oro a precio Justo. Tramites fácil para recuperar las joyas, aros de matrimonio y anillo de compromiso, compran plata y relojes. Excelente atención"</p>
-            <p class="testimonial-author">- Carlos Alvarez Alvarez</p>
-        </div>
-        <div class="testimonial">
-            <p class="testimonial-content">"Excelente atención!"</p>
-            <p class="testimonial-author">- Paulina Patiño Montaño</p>
+            <a href="#formulario" class="btn animate-on-scroll">Visítanos Hoy</a>
         </div>
     </section>
 
-    <section id="ubicacion" class="location">
-        <h2>Visítanos</h2>
-        <p>Estamos ubicados en el corazón de Quito, Ecuador.</p>
-        <div class="map-container" id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.7250785137459!2d-78.47980855029864!3d-0.1706288870272786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59b004f883043%3A0xf9c3de84e92f6076!2sMega%20Tres%20Oros%20Joyer%C3%ADa!5e0!3m2!1ses!2sar!4v1736364162244!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
-        <p>Av. de los Shyris &, Quito 170102, Ecuador</p>
-     
-    </section>
+    <!-- Catálogo Section -->
+    <section id="catalogo" class="catalog">
+        <div class="container">
+            <h2 class="animate-on-scroll">Catálogo de Joyas</h2>
 
-    <footer>
-       <a href="#formulario" class="btn">¡Quiero Mi Cotización!</a> 
-        <div class="footer-info">
-            <p>Mega Tres Oros Joyería</p>
-            <p>Dirección: Av. de los Shyris &, Quito 170102, Ecuador</p>
-            <p>Teléfono: <a href="tel:+593995190080">+593 99519 0080</a></p>
-                      <details class="schedule">
-                <summary>Horario de Atención</summary>
+            <div class="catalog-info animate-on-scroll">
+                <h3>Compra y Venta de Oro</h3>
+                <p>En Mega Tres Oros compramos:</p>
                 <ul>
-                    <li>Martes: 8:30 a. m. – 6:30 p. m.</li>
-                    <li>Miércoles: 8:30 a. m. – 6:30 p. m.</li>
-                    <li>Jueves: 8:30 a. m. – 6:30 p. m.</li>
-                    <li>Viernes: 8:30 a. m. – 6:30 p. m.</li>
-                    <li>Sábado: 9 a. m. – 2 p. m.</li>
-                    <li>Domingo: Cerrado</li>
-                    <li>Lunes: 8:30 a. m. – 6:30 p. m.</li>
+                    <li>Oro de todos los quilatajes</li>
+                    <li>Plata y platino</li>
+                    <li>Relojes de marca</li>
+                    <li>Piedras preciosas</li>
                 </ul>
-            </details>
-            <p>© 2025 Mega Tres Oros Joyería. Todos los derechos reservados.</p>
+                <p>Ofrecemos el mejor precio del mercado con pagos justos, rápidos (en solo 5 minutos) y seguros (efectivo o transferencia).</p>
+                <p>También contamos con un Plan de Recompra si deseas recuperar tus joyas en el futuro.</p>
+            </div>
+
+            <div class="catalog-info animate-on-scroll">
+                <h3>Catálogo de Joyas y Accesorios</h3>
+                <p>Descubre nuestra exclusiva colección de joyas y accesorios en cada una de nuestras sucursales. Cada tienda cuenta con un catálogo único que puedes consultar directamente.</p>
+                <p>Para ver nuestro catálogo completo, completa el formulario seleccionando la opción "Ver Catálogo de Joyas" y la sucursal de tu interés. Te enviaremos el catálogo digital directamente a tu WhatsApp.</p>
+            </div>
+
+            <a href="#formulario" class="btn animate-on-scroll">Solicitar Información</a>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="animate-on-scroll">Testimonios de Clientes Satisfechos</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial animate-on-scroll">
+                    <p class="testimonial-content">"Vendí mis joyas de oro en Mega Tres Oros y quedé muy impresionado con el servicio. El proceso fue rápido, el precio fue justo y el personal fue muy amable. ¡Los recomiendo ampliamente!"</p>
+                    <p class="testimonial-author">Juan Pérez</p>
+                </div>
+                <div class="testimonial animate-on-scroll">
+                    <p class="testimonial-content">"Necesitaba dinero rápido y decidí vender algunas joyas que ya no usaba. Mega Tres Oros me ofreció una excelente cotización y me pagaron en efectivo en el momento. ¡Excelente servicio!"</p>
+                    <p class="testimonial-author">María González</p>
+                </div>
+                <div class="testimonial animate-on-scroll">
+                    <p class="testimonial-content">"Compra de oro a precio Justo. Trámites fáciles para recuperar las joyas, aros de matrimonio y anillo de compromiso, compran plata y relojes. Excelente atención."</p>
+                    <p class="testimonial-author">Carlos Alvarez Alvarez</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación Section -->
+    <section id="ubicacion" class="location">
+        <div class="container">
+            <h2 class="animate-on-scroll">Nuestras Sucursales</h2>
+            <p>Estamos ubicados estratégicamente en Quito para tu comodidad.</p>
+
+            <div class="map-container animate-on-scroll" id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.7250785137459!2d-78.47980855029864!3d-0.1706288870272786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59b004f883043%3A0xf9c3de84e92f6076!2sMega%20Tres%20Oros%20Joyer%C3%ADa!5e0!3m2!1ses!2sar!4v1736364162244!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="branches-info animate-on-scroll">
+                <div class="branch-info">
+                    <h4>Sucursal Sur</h4>
+                    <p>Av. Maldonado y Gil Martínez (frente a pizzería El Hornero)</p>
+                    <p>WhatsApp: <a href="https://wa.me/593979012315" target="_blank">+593 97 901 2315</a></p>
+                </div>
+                <div class="branch-info">
+                    <h4>Sucursal Centro</h4>
+                    <p>Olmedo y Guayaquil (Plaza del Teatro)</p>
+                    <p>WhatsApp: <a href="https://wa.me/593995199146" target="_blank">+593 99 519 9146</a></p>
+                </div>
+                <div class="branch-info">
+                    <h4>Sucursal Centro-Norte</h4>
+                    <p>Av. Colón y 9 de Octubre (Esquina)</p>
+                    <p>WhatsApp: <a href="https://wa.me/593958984622" target="_blank">+593 95 898 4622</a></p>
+                </div>
+                <div class="branch-info">
+                    <h4>Sucursal Norte</h4>
+                    <p>Av. de los Shyris y Gaspar de Villarroel (frente a CC Galerías)</p>
+                    <p>WhatsApp: <a href="https://wa.me/593995190080" target="_blank">+593 99 519 0080</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección CTA Final -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="animate-on-scroll">¿Listo para Vender o Comprar Oro?</h2>
+            <p class="animate-on-scroll">Completa nuestro formulario y recibe atención personalizada en cualquiera de nuestras sucursales.</p>
+            <a href="#formulario" class="btn btn-large animate-on-scroll">¡Solicitar Información Ahora!</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mega Tres Oros Joyería</h3>
+                    <p>La mejor opción para vender tus joyas usadas en Quito. Ofrecemos el mejor precio del mercado con un servicio rápido, seguro y transparente.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="#beneficios">¿Por Qué Elegirnos?</a></p>
+                    <p><a href="#formulario">Vende Tu Oro</a></p>
+                    <p><a href="#catalogo">Catálogo de Joyas</a></p>
+                    <p><a href="#ubicacion">Nuestras Sucursales</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Teléfono: <a href="tel:+593995190080">+593 99 519 0080</a></p>
+                    <details class="schedule">
+                        <summary>Horario de Atención</summary>
+                        <ul>
+                            <li>Lunes: 8:30 a.m. – 6:30 p.m.</li>
+                            <li>Martes: 8:30 a.m. – 6:30 p.m.</li>
+                            <li>Miércoles: 8:30 a.m. – 6:30 p.m.</li>
+                            <li>Jueves: 8:30 a.m. – 6:30 p.m.</li>
+                            <li>Viernes: 8:30 a.m. – 6:30 p.m.</li>
+                            <li>Sábado: 9 a.m. – 2 p.m.</li>
+                            <li>Domingo: Cerrado</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Mega Tres Oros Joyería. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
-<script>
-    jQuery(document).ready(function() {
-        jQuery('#landingurl').val(window.location.href);
 
-        jQuery('#leadForm').on('submit', async function(event) {
-            event.preventDefault();
-            console.log("Evento submit disparado"); // <-- Verificar evento
-
-            let isValid = true;
-            const errorSummaryList = jQuery('.error-summary ul');
-            errorSummaryList.empty();
-            jQuery('.error-summary').hide();
-
-            // Validación del nombre completo
-            const nombre = jQuery('#nombre').val();
-            const nombreError = jQuery('#nombre-error');
-            if (nombre.trim().split(/\s+/).length < 2) {
-                nombreError.show();
-                jQuery('#nombre').addClass('error');
-                isValid = false;
-                addErrorToSummary('Nombre completo (nombre y apellido).');
-            } else {
-                nombreError.hide();
-                jQuery('#nombre').removeClass('error');
-            }
-
-            // Validación del número de WhatsApp
-            const whatsapp = jQuery('#whatsapp').val();
-            const whatsappError = jQuery('#whatsapp-error');
-            if (whatsapp.length < 12 || !/^\d+$/.test(whatsapp)) {
-                whatsappError.show();
-                jQuery('#whatsapp').addClass('error');
-                isValid = false;
-                addErrorToSummary('Número de WhatsApp válido (mínimo 12 dígitos).');
-            } else {
-                whatsappError.hide();
-                jQuery('#whatsapp').removeClass('error');
-            }
-
-            // Si hay errores, mostrar el resumen
-            if (!isValid) {
-                console.log("Form validation failed");
-                jQuery('.error-summary').show();
-            } else {
-                // Enviar datos a la aplicación web usando AJAX y jQuery
-                const formData = new FormData(this);
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
-
-                console.log("Datos del formulario a enviar:", formObject);
-
-                // Declarar whatsappLink y whatsappMessage fuera del try/catch
-                let whatsappLink;
-                let whatsappMessage = `Hola, quisiera confirmar mi cotización:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Cotización:* ${encodeURIComponent(formObject.detalles)}%0A`;
-
-                console.log("Formulario validado correctamente, entrando al try/catch"); // <-- Verificar entrada al try/catch
-
-                try {
-                    const response = await jQuery.ajax({
-                        url: "https://script.google.com/macros/s/AKfycbwdhXFtrcZPhYBX_kJl35Njwncpoi8RcmUPJzyWUfQLZETmKiAOql6MC0zqQB3ybjoucA/exec",
-                        method: "POST",
-                        dataType: "json",
-                        data: formObject,
-                    });
-
-                    console.log('Respuesta del servidor:', response);
-                    if (response.result === 'success') {
-                        gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
-                        console.log("Evento de conversión de Google Ads disparado.");
-
-                        // Generar el mensaje de WhatsApp
-                        
-                        if (formObject.cita) {
-                            whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
-                        }
-                        whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-
-                        // **DEBUG:** Imprimir el valor de whatsappLink
-                        console.log("whatsappLink generado (try):", whatsappLink);
-
-                        // Redirigir a WhatsApp después de 2 segundos (SIMPLIFICADO para pruebas)
-                        setTimeout(function () {
-                            // alert("Redireccionando a WhatsApp (try)"); // Usar alert temporalmente para depurar
-                             window.open(whatsappLink, '_blank');
-                             jQuery('#leadForm')[0].reset();
-                        }, 2000);
-
-                    } else {
-                        console.error('Error en la respuesta del servidor:', response.message);
-                        // Considera si quieres disparar el evento de conversión aquí también
-                    }
-                } catch (error) {
-                    console.error('Error en la petición AJAX:', error);
-
-                    gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
-                    console.log("Evento de conversión de Google Ads disparado (caso de error AJAX).");
-
-                    // Generar el mensaje de WhatsApp incluso si hay un error
-                    
-                    if (formObject.cita) {
-                        whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
-                    }
-                    whatsappLink = `https://wa.me/593995190080?text=${whatsappMessage}`;
-
-                    // **DEBUG:** Imprimir el valor de whatsappLink
-                    console.log("whatsappLink generado (catch):", whatsappLink);
-
-                    // Redirigir a WhatsApp después de 2 segundos (SIMPLIFICADO para pruebas)
-                    setTimeout(function () {
-                      // alert("Redireccionando a WhatsApp (catch)"); // Usar alert temporalmente para depurar
-                         window.open(whatsappLink, '_blank');
-                         jQuery('#leadForm')[0].reset();
-                    }, 2000);
-                }
-            }
-
-            function addErrorToSummary(errorMessage) {
-                console.log("Adding error to summary:", errorMessage);
-                const listItem = jQuery('<li></li>').text(errorMessage);
-                errorSummaryList.append(listItem);
-            }
-        });
-    });
-</script>
-
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
 </body>
 </html>
