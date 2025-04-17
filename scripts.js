@@ -114,6 +114,17 @@ jQuery(document).ready(function() {
                 formObject[key] = value;
             });
 
+            // Combinar la información del tipo de consulta y sucursal en el campo detalles
+            const tipoConsultaTexto = tipoConsulta === 'venta_oro' ? 'VENDER ORO' :
+                                    tipoConsulta === 'compra_oro' ? 'COMPRAR ORO' :
+                                    'VER CATÁLOGO';
+
+            // Obtener los detalles actuales o inicializar como string vacío
+            const detallesActuales = formObject.detalles || '';
+
+            // Crear un nuevo texto de detalles que incluya el tipo de consulta y la sucursal
+            formObject.detalles = `TIPO DE CONSULTA: ${tipoConsultaTexto} | SUCURSAL: ${sucursal} | DETALLES: ${detallesActuales}`;
+
             console.log("Datos del formulario a enviar:", formObject);
 
             // Obtener el WhatsApp de la sucursal seleccionada
@@ -133,20 +144,23 @@ jQuery(document).ready(function() {
             let whatsappLink;
             let whatsappMessage = "";
 
+            // Obtener los detalles originales (sin la información de tipo y sucursal)
+            const detallesOriginales = detallesActuales;
+
             if (tipoConsulta === 'venta_oro') {
-                whatsappMessage = `Hola, quisiera confirmar mi cotización para venta de oro:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Cotización:* ${encodeURIComponent(formObject.detalles || '')}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
+                whatsappMessage = `Hola, quisiera confirmar mi cotización para venta de oro:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Detalles:* ${encodeURIComponent(detallesOriginales)}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
 
                 if (formObject.cita) {
                     whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                 }
             } else if (tipoConsulta === 'compra_oro') {
-                whatsappMessage = `Hola, me interesa comprar oro:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Detalles:* ${encodeURIComponent(formObject.detalles || '')}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
+                whatsappMessage = `Hola, me interesa comprar oro:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Detalles:* ${encodeURIComponent(detallesOriginales)}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
 
                 if (formObject.cita) {
                     whatsappMessage += `*Día y hora preferible de cita:* ${encodeURIComponent(formObject.cita)}%0A`;
                 }
             } else if (tipoConsulta === 'catalogo_joyas') {
-                whatsappMessage = `Hola, me interesa ver el catálogo de joyas:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Interés:* ${encodeURIComponent(formObject.detalles || '')}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
+                whatsappMessage = `Hola, me interesa ver el catálogo de joyas:%0A*Nombre:* ${encodeURIComponent(formObject.nombre)}%0A*Interés:* ${encodeURIComponent(detallesOriginales)}%0A*Sucursal:* ${encodeURIComponent(sucursal)}%0A`;
             }
 
             console.log("Formulario validado correctamente, entrando al try/catch");
