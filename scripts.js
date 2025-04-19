@@ -178,6 +178,10 @@ jQuery(document).ready(function() {
                     gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
                     console.log("Evento de conversión de Google Ads disparado.");
 
+                    // Disparar evento de Facebook Pixel
+                    fbq('track', 'Schedule');
+                    console.log("Evento 'Schedule' de Facebook Pixel disparado.");
+
                     whatsappLink = `https://wa.me/${sucursalWhatsapp}?text=${whatsappMessage}`;
 
                     // Redirigir a WhatsApp después de 2 segundos
@@ -199,6 +203,10 @@ jQuery(document).ready(function() {
 
                 gtag('event', 'conversion', {'send_to': 'AW-11551405281/mlLNCIqbkIQaEOHpkYQr'});
                 console.log("Evento de conversión de Google Ads disparado (caso de error AJAX).");
+
+                // Disparar evento de Facebook Pixel
+                fbq('track', 'Schedule');
+                console.log("Evento 'Schedule' de Facebook Pixel disparado (caso de error AJAX).");
 
                 whatsappLink = `https://wa.me/${sucursalWhatsapp}?text=${whatsappMessage}`;
 
