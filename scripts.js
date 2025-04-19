@@ -183,10 +183,21 @@ jQuery(document).ready(function() {
                     console.log("Evento 'Schedule' de Facebook Pixel disparado.");
 
                     whatsappLink = `https://wa.me/${sucursalWhatsapp}?text=${whatsappMessage}`;
+                    console.log("WhatsApp link generado:", whatsappLink);
 
                     // Redirigir a WhatsApp después de 2 segundos
                     setTimeout(function () {
-                        window.open(whatsappLink, '_blank');
+                        console.log("Intentando abrir WhatsApp...");
+                        var opened = window.open(whatsappLink, '_blank');
+
+                        if (!opened) {
+                            console.log("No se pudo abrir la ventana. Posible bloqueo de popups.");
+                            // Alternativa: redireccionar en la misma ventana
+                            window.location.href = whatsappLink;
+                        } else {
+                            console.log("Ventana de WhatsApp abierta correctamente.");
+                        }
+
                         jQuery('#leadForm')[0].reset();
                         // Restaurar el formulario al estado inicial
                         jQuery('#detalles-group').show();
@@ -209,10 +220,21 @@ jQuery(document).ready(function() {
                 console.log("Evento 'Schedule' de Facebook Pixel disparado (caso de error AJAX).");
 
                 whatsappLink = `https://wa.me/${sucursalWhatsapp}?text=${whatsappMessage}`;
+                console.log("WhatsApp link generado (caso de error AJAX):", whatsappLink);
 
                 // Redirigir a WhatsApp después de 2 segundos
                 setTimeout(function () {
-                    window.open(whatsappLink, '_blank');
+                    console.log("Intentando abrir WhatsApp (caso de error AJAX)...");
+                    var opened = window.open(whatsappLink, '_blank');
+
+                    if (!opened) {
+                        console.log("No se pudo abrir la ventana. Posible bloqueo de popups.");
+                        // Alternativa: redireccionar en la misma ventana
+                        window.location.href = whatsappLink;
+                    } else {
+                        console.log("Ventana de WhatsApp abierta correctamente.");
+                    }
+
                     jQuery('#leadForm')[0].reset();
                     // Restaurar el formulario al estado inicial
                     jQuery('#detalles-group').show();
