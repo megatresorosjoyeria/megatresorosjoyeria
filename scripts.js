@@ -127,18 +127,8 @@ jQuery(document).ready(function() {
 
             console.log("Datos del formulario a enviar:", formObject);
 
-            // Obtener el WhatsApp de la sucursal seleccionada
-            let sucursalWhatsapp = "593995190080"; // Default a Norte
-
-            if (sucursal.includes("Sur")) {
-                sucursalWhatsapp = "593979012315";
-            } else if (sucursal.includes("Centro") && !sucursal.includes("Norte")) {
-                sucursalWhatsapp = "593995199146";
-            } else if (sucursal.includes("Centro-Norte")) {
-                sucursalWhatsapp = "593958984622";
-            } else if (sucursal.includes("Norte")) {
-                sucursalWhatsapp = "593995190080";
-            }
+            // WhatsApp unificado
+            const sucursalWhatsapp = "593983937785";
 
             // Crear el mensaje de WhatsApp según el tipo de consulta
             let whatsappLink;
